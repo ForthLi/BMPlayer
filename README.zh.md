@@ -31,21 +31,31 @@
 ## 安装
 ### CocoaPods
 
-#### Swift3
-确保使用最新版本cocoapods **cocoapods 1.1.0.rc.2**, 可以使用命令 `sudo gem install cocoapods --pre` 来升级.
+#### Swift 4
+```
+use_frameworks!
 
-```ruby
-target 'ProjectName' do
-    use_frameworks!
-    pod 'BMPlayer'
-end
+pod 'BMPlayer', '~> 1.0.0'
 ```
 
-#### Swift 2.2 
+#### Swift 3
+```
+use_frameworks!
+
+pod 'BMPlayer', '~> 0.9.1'
+```
+
+#### Swift 2.2
 ```
 use_frameworks!
 
 pod 'BMPlayer', '~> 0.3.3'
+```
+
+**To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use**
+
+```swift
+pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
 
 ### Carthage
@@ -90,7 +100,7 @@ player.snp_makeConstraints { (make) in
     // 注意此处，宽高比 16:9 优先级比 1000 低就行，在因为 iPhone 4S 宽高比不是 16：9
         make.height.equalTo(player.snp_width).multipliedBy(9.0/16.0).priority(750)
 }
-player.backBlock = { [unowned self] in
+player.backBlock = { [unowned self] (isFullScreen) in
     let _ = self.navigationController?.popViewController(animated: true)
 }
 ```

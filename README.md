@@ -7,6 +7,7 @@
 [![License](https://img.shields.io/cocoapods/l/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![Platform](https://img.shields.io/cocoapods/p/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![Weibo](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-%40%E8%89%BE%E5%8A%9B%E4%BA%9A%E5%B0%94-yellow.svg?style=flat)](http://weibo.com/536445669)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBrikerMan%2FBMPlayer.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FBrikerMan%2FBMPlayer?ref=badge_shield)
 
 A video player for iOS, based on AVPlayer, support the horizontal, vertical screen. support adjust volume, brightness and seek by slide, support subtitles.
 
@@ -23,30 +24,29 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 - [x] Add Http header and other options to AVURLAsset
 - [x] Easy to customize
 - [x] Supporting show local and online subtitles
-- [x] [Swift 3](https://developer.apple.com/swift/)
+- [x] [Swift 4](https://developer.apple.com/swift/)
 
 ## Requirements
 - iOS 8 +
-- Xcode 8
-- Swift 3
+- Xcode 9
+- Swift 4
 
 ## Installation
 ### CocoaPods
 
-#### Swift3
-Please make sure using the latest cocoapods, update with `sudo gem install cocoapods`.
+#### Swift 4
 
-```ruby
-target 'ProjectName' do
-    use_frameworks!
-    pod 'BMPlayer'
-end
+```
+use_frameworks!
+
+pod 'BMPlayer', '~> 1.0.0'
 ```
 
-**To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use**
+#### Swift 3
+```
+use_frameworks!
 
-```swift
-pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+pod 'BMPlayer', '~> 0.9.1'
 ```
 
 #### Swift 2.2
@@ -56,12 +56,19 @@ use_frameworks!
 pod 'BMPlayer', '~> 0.3.3'
 ```
 
+**To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use**
+
+```swift
+pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+```
+
 ### Carthage
 Add `BMPlayer` in your Cartfile.
 ```
 github "BrikerMan/BMPlayer"
 ```
 Run carthage to build the framework and drag the built BMPlayer.framework into your Xcode project.
+
 ### Demo
 run `pod install` at `Example` folder before run the demo.
 
@@ -100,7 +107,8 @@ player.snp.makeConstraints { (make) in
     make.height.equalTo(player.snp.width).multipliedBy(9.0/16.0).priority(750)
 }
 // Back button event
-player.backBlock = { [unowned self] in
+player.backBlock = { [unowned self] (isFullScreen) in
+    if isFullScreen == true { return }
     let _ = self.navigationController?.popViewController(animated: true)
 }
 ```
@@ -213,3 +221,6 @@ You are welcome to fork and submit pull requests.
 
 ## License
 BMPlayer is available under the MIT license. See the LICENSE file for more info.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBrikerMan%2FBMPlayer.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FBrikerMan%2FBMPlayer?ref=badge_large)
